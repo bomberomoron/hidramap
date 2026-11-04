@@ -4,8 +4,8 @@
   "description": "Relevamiento de hidrantes — Bomberos Voluntarios de Morón",
   "start_url": "./",
   "display": "browser",
-  "background_color": "#c62828",
-  "theme_color": "#c62828",
+  "background_color": "#0277bd",
+  "theme_color": "#0277bd",
   "lang": "es",
   "icons": [
     {
