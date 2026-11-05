@@ -2,39 +2,99 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HidraMap BVM</title>
 <meta name="description" content="Relevamiento de hidrantes — Bomberos Voluntarios de Morón">
 <meta name="theme-color" content="#0277bd">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="icono-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="HidraMap">
 <meta property="og:title" content="HidraMap BVM">
 <meta property="og:description" content="Relevamiento de hidrantes — Bomberos Voluntarios de Morón">
 <meta property="og:image" content="https://bomberomoron.github.io/hidramap/logo.png">
+<script>
+  // Único lugar donde está el link de la app. Si cambia, se edita solo esta línea.
+  var APP = 'https://script.google.com/macros/s/AKfycbwGEtxMA16gehztyg1QPetuwCV1WI-o58Zf5F6_r_MnpmaB0X1GlPZ6gICJyrqe1-07/exec';
+  // Abierto desde el ícono del celular (o con ?abrir): va directo a la app.
+  var desdeIcono = window.navigator.standalone === true ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+    /[?&](inicio|abrir)\b/.test(location.search);
+  if (desdeIcono) location.replace(APP);
+</script>
 <style>
-  html,body{margin:0;height:100%;background:linear-gradient(160deg,#4fc3f7 0%,#0277bd 45%,#01579b 100%);color:#fff;
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:linear-gradient(160deg,#4fc3f7 0%,#0277bd 45%,#01579b 100%) fixed;color:#fff;
     font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-  main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:16px;padding:24px;box-sizing:border-box;text-align:center}
-  img{width:160px;height:160px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.25))}
-  p{margin:0;opacity:.9}
-  a{display:inline-block;margin-top:8px;padding:14px 28px;border-radius:10px;background:#fff;color:#0277bd;
-    font-weight:700;text-decoration:none;font-size:17px}
+  main{max-width:440px;margin:0 auto;padding:32px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+  .logo{width:150px;height:150px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.25))}
+  .sub{margin:0;opacity:.92;font-size:15px}
+  .abrir{display:block;width:100%;margin-top:6px;padding:16px;border-radius:12px;background:#fff;color:#0277bd;
+    font-weight:700;text-decoration:none;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .caja{width:100%;margin-top:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:16px 16px 6px;text-align:left}
+  .caja h2{margin:0 0 4px;font-size:17px}
+  .caja p{margin:0 0 10px;font-size:14px;opacity:.92;line-height:1.4}
+  .instalar{display:none;width:100%;padding:13px;border:0;border-radius:10px;background:#ffd400;color:#0d2b45;font-weight:700;font-size:16px;margin-bottom:12px;cursor:pointer}
+  ol{margin:0 0 10px;padding-left:22px;font-size:15px;line-height:1.5}
+  li{margin-bottom:6px}
+  .so{display:none}
+  .ver .so{display:block}
+  .tecla{display:inline-block;padding:0 7px;border-radius:6px;background:rgba(255,255,255,.22);font-weight:600}
+  .chico{font-size:13px;opacity:.85}
 </style>
 </head>
 <body>
 <main>
-  <img src="logo.webp" alt="HidraMap">
-  <p>Abriendo la app…</p>
-  <a id="abrir" href="#">Abrir HidraMap</a>
+  <img class="logo" src="logo.webp" alt="HidraMap">
+  <p class="sub">Relevamiento de hidrantes · Bomberos Voluntarios de Morón</p>
+  <a class="abrir" id="abrir" href="#">Abrir HidraMap</a>
+
+  <section class="caja">
+    <h2>📲 Instalá el acceso directo</h2>
+    <p>Así te queda el ícono de HidraMap en el celular y la app se abre con un toque.</p>
+    <button class="instalar" id="instalar" type="button">Instalar HidraMap</button>
+
+    <div class="so" id="so-android">
+      <ol>
+        <li>Abrí este link en <b>Chrome</b>.</li>
+        <li>Tocá el menú <span class="tecla">⋮</span> (arriba a la derecha).</li>
+        <li>Elegí <b>Agregar a la pantalla principal</b> (o <b>Instalar app</b>) y confirmá.</li>
+      </ol>
+    </div>
+    <div class="so" id="so-ios">
+      <ol>
+        <li>Abrí este link en <b>Safari</b>.</li>
+        <li>Tocá el botón <b>Compartir</b> <span class="tecla">⬆︎</span> (abajo, en el centro).</li>
+        <li>Bajá y elegí <b>Agregar a inicio</b>, después <b>Agregar</b>.</li>
+      </ol>
+    </div>
+    <p class="chico">Importante: agregalo desde <b>esta</b> página, no desde la app abierta; si no, el ícono sale sin el logo.</p>
+  </section>
 </main>
 <script>
-  // Único lugar donde está el link de la app. Si cambia, se edita solo esta línea.
-  var APP = 'https://script.google.com/macros/s/AKfycbwGEtxMA16gehztyg1QPetuwCV1WI-o58Zf5F6_r_MnpmaB0X1GlPZ6gICJyrqe1-07/exec';
   document.getElementById('abrir').href = APP;
-  location.replace(APP);
+
+  var ua = navigator.userAgent || '';
+  var esIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var esAndroid = /Android/.test(ua);
+  if (esIOS) document.getElementById('so-ios').parentNode.classList.add('ver'), document.getElementById('so-android').remove();
+  else if (esAndroid) document.getElementById('so-android').parentNode.classList.add('ver'), document.getElementById('so-ios').remove();
+  else document.querySelector('.caja').classList.add('ver'); // en la compu se ven las dos
+
+  // Android/Chrome: botón "Instalar" directo cuando el navegador lo permite
+  var pedido = null, btn = document.getElementById('instalar');
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); pedido = e; btn.style.display = 'block'; });
+  btn.addEventListener('click', function () {
+    if (!pedido) return;
+    pedido.prompt();
+    pedido.userChoice.finally(function () { pedido = null; btn.style.display = 'none'; });
+  });
+  window.addEventListener('appinstalled', function () { btn.style.display = 'none'; });
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
 </script>
 </body>
 </html>

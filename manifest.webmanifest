@@ -1,9 +1,11 @@
 {
+  "id": "./",
   "name": "HidraMap BVM",
   "short_name": "HidraMap",
   "description": "Relevamiento de hidrantes — Bomberos Voluntarios de Morón",
-  "start_url": "./",
-  "display": "browser",
+  "start_url": "./?inicio=1",
+  "scope": "./",
+  "display": "standalone",
   "background_color": "#0277bd",
   "theme_color": "#0277bd",
   "lang": "es",
